@@ -5,15 +5,15 @@ import streamlit as st
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-new_df = pd.read_csv('new_df.csv')
-cs_cv = pickle.load(open('cv_similarity.pkl','rb'))
+new_df = pd.read_csv('mov_df.csv')
+cs_cv_f = pickle.load(open('cv_similarity_f.pkl','rb'))
 # cs_cv = pickle.load(open('cos_similarity.pkl','rb'))
 # cs_cv1 = pickle.load(open('cos_similarity.pkl','rb'))
 # cs_tfidf = pickle.load(open('cos_similarity.pkl','rb'))
 # cs_tfidf = pickle.load(open('cos_similarity.pkl','rb'))
 # cs_word2vec = pickle.load(open('cos_similarity.pkl','rb'))
 
-def reccomend(movie, simi=cs_cv):
+def reccomend(movie, simi=cs_cv_f):
     movie_list= []
     index = new_df[new_df['title']==movie].index[0]
     reccomend_movies = sorted(list(enumerate(simi[index])), reverse= True, key = lambda x: x[1])[1:6]
