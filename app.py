@@ -22,10 +22,17 @@ def reccomend(movie, simi=cs_cv_f):
         # print(f"Movies: {new_df['title'].iloc[i]}\t Percentages of Matching: {(recc*100):.2f}%")
     return movie_list, reccomend_movies
 
-      
-st.title("Movie Recommender System")
-st.subheader("Choose any movie you like to get 5 similar movies")
-movie = st.selectbox("Choose the movie", options = ['Select / Type the movie name'] + new_df['title'].tolist())
+
+st.set_page_config(
+    page_title="MovieBuddy 🎬",   # This will appear on the browser tab
+    page_icon="🎥",               # Optional: emoji or icon
+    layout="centered",            # 'wide' or 'centered'
+    initial_sidebar_state="expanded"
+)
+
+st.title("Welcome to MovieBuddy 🎬")
+st.subheader("Discover movies similar to your favorites!")
+movie = st.selectbox("Pick a movie you love… and we’ll find similar ones!", options = ['Your pick 🍿'] + new_df['title'].tolist())
 if st.button('Get Movies'):
     movie_list, reccomend_movies = reccomend(movie)
     
