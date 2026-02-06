@@ -36,14 +36,22 @@ movie = st.selectbox("Pick a movie you love… and we’ll find similar ones!", 
 if st.button('Get Movies'):
     movie_list, reccomend_movies = reccomend(movie)
     
-    col1, col2 = st.columns(2)
+    # col1, col2 = st.columns(2)
+
+    matrix = pd.DataFrame({
+        "Movies": movie_list,
+        "Percentage Match (%)": [f"{(recc*100):.2f}%" for i,recc in reccomend_movies],
+    },
+    index = [i for i in range(1,6)],
+                         )
+    st.table(matrix)
     
-    with col1:
-        st.header('Movies')
-        for i in range(5):
-            st.write(movie_list[i])
+    # with col1:
+    #     st.header('Movies')
+    #     for i in range(5):
+    #         st.write(movie_list[i])
     
-    with col2:
-        st.header('Percentage Match')
-        for i,recc in reccomend_movies:
-            st.write(f"{(recc*100):.2f}%")
+    # with col2:
+    #     st.header('Percentage Match')
+    #     for i,recc in reccomend_movies:
+    #         st.write(f"{(recc*100):.2f}%")
