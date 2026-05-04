@@ -33,7 +33,7 @@ The system is content-based: it recommends movies that share similar metadata, n
 - App looks up the precomputed similarity row for that movie
 - Sorts all other movies by score, returns top 5 with percentage match
 
-Three vectorizers were tested during development (CountVectorizer, TF-IDF, Word2Vec). CountVectorizer gave the best qualitative results and was used in the final deployment.
+Six vectorizers were tested during development: CountVectorizer (unlimited, 5000, 3000 features), TF-IDF (unlimited, 5000 features), and Word2Vec (gensim). Word2Vec collapsed — it produced near-identical similarity scores (~99.6%) across all movies, making it unusable for recommendations. CountVectorizer with 3000–5000 features gave the best qualitative results and was selected for production.
 
 ---
 
